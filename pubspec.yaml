@@ -1,0 +1,40 @@
+name: ebisu_msgpack
+version: 0.0.1
+author: Daniel Davidson <dbdavidson@yahoo.com>
+homepage: https://github.com/patefacio/ebisu_msgpack
+description: >
+  Support for generating code providing msgpack data access patterns.
+
+dependencies:
+
+# custom <ebisu_msgpack dependencies>
+
+  ebisu_pod:
+    git:
+      url: git://github.com/patefacio/ebisu_pod
+      ref: HEAD
+
+
+# end <ebisu_msgpack dependencies>
+
+dev_dependencies:
+  yaml: "any"
+  browser: "any"
+  hop: "any"
+  hop_docgen: "any"
+
+# custom <ebisu_msgpack dev dependencies>
+
+  test: "^0.12.0"
+
+# end <ebisu_msgpack dev dependencies>
+
+dependency_overrides:
+# custom <ebisu_msgpack dependency overrides>
+# end <ebisu_msgpack dependency overrides>
+
+transformers:
+
+# custom <ebisu_msgpack transformers>
+# end <ebisu_msgpack transformers>
+
