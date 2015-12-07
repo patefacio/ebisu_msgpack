@@ -38,6 +38,7 @@ Support for generating code providing msgpack data access patterns.
     ..libraries = [
 
       library('msgpack_cpp')
+      ..doc = 'Support for generating C++ serializers with msgpack'
       ..imports = [
         'package:ebisu_pod/pod.dart',
         'package:quiver/iterables.dart',
@@ -46,10 +47,12 @@ Support for generating code providing msgpack data access patterns.
         'package:ebisu_cpp/ebisu_cpp.dart',
       ]
       ..classes = [
-
         class_('pod_msgpack')
+        ..doc = 'Given a root [PodObject] will generate C++ serializers'
+        ..defaultMemberAccess = RO
         ..members = [
           member('root_pod')..type = 'PodObject',
+          member('namespace')..type = 'Namespace'..access = IA,
         ]
       ],
     ];

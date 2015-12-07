@@ -14,6 +14,9 @@ dependencies:
       url: git://github.com/patefacio/ebisu_pod
       ref: HEAD
 
+  ebisu_cpp:
+    git: git://github.com/patefacio/ebisu_cpp
+      
 
 # end <ebisu_msgpack dependencies>
 

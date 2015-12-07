@@ -5,6 +5,9 @@ import 'package:logging/logging.dart';
 import 'package:test/test.dart';
 
 // custom <additional imports>
+
+import 'package:ebisu_msgpack/msgpack_cpp.dart';
+
 // end <additional imports>
 
 final _logger = new Logger('test_msgpack_cpp');
@@ -19,6 +22,14 @@ main([List<String> args]) {
 // custom <main>
 
   print(holding);
+
+  test('serialization', () {
+    final podMsgpack = new PodMsgpack(holding);
+    final header = podMsgpack.header;
+
+    expect(header.id, holding.id);
+    print(header.contents);
+  });
 
 // end <main>
 }
