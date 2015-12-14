@@ -21,13 +21,9 @@ main([List<String> args]) {
   Logger.root.level = Level.OFF;
 // custom <main>
 
-  print(holding);
-
   test('serialization', () {
-    final podMsgpack = new PodMsgpack(holding);
+    final podMsgpack = new PodMsgpack(balanceSheet);
     final header = podMsgpack.header;
-
-    expect(header.id, holding.id);
     print(header.contents);
   });
 
