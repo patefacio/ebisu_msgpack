@@ -24,6 +24,7 @@ main([List<String> args]) {
   test('serialization', () {
     final podMsgpack = new PodMsgpack(balanceSheet);
     final header = podMsgpack.header;
+    header.setAsRoot();
     print(header.contents);
   });
 

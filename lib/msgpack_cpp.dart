@@ -32,6 +32,55 @@ class PodMsgpack {
 
   _addSerializerSupport() {
     _header.includes.add('msgpack.hpp');
+    for (Class cls in _header.classes) {
+      print('PodObjects => ${podPackage.podObjects.map((po) => po.name)}');
+      final podObject = podPackage.getType(cls.id.snake);
+
+      cls.getCodeBlock(clsPublic).snippets.add(
+          'MSGPACK_DEFINE(${cls.members.map((m) => m.vname).join(", ")});\n');
+      cls
+        ..addFullMemberCtor()
+        ..defaultCtor.usesDefault = true;
+    }
+
+    final podEnums = podPackage.podEnums;
+    _header.getCodeBlock(fcbEndNamespace).snippets.add(brCompact(podEnums
+        .map((pe) => 'MSGPACK_ADD_ENUM(${defaultNamer.nameEnum(pe.id)});')));
+
+    final hasDate = podPackage.allTypes.any((var t) => t.typeName == 'date');
+
+    if (hasDate) {
+      _header.getCodeBlock(fcbPostNamespace).snippets.add('''
+
+#ifndef __BOOST_DATE_MSGPACK_SERIALIZER__
+#define __BOOST_DATE_MSGPACK_SERIALIZER__
+namespace msgpack {
+MSGPACK_API_VERSION_NAMESPACE(MSGPACK_DEFAULT_API_NS) {
+namespace adaptor {
+
+template<>
+struct convert<boost::gregorian::date> {
+    msgpack::object const& operator()(msgpack::object const& o, boost::gregorian::date& v) const {
+        v = boost::gregorian::from_undelimited_string(o.as<std::string>());
+        return o;
+    }
+};
+
+template<>
+struct pack<boost::gregorian::date> {
+    template <typename Stream>
+    packer<Stream>& operator()(msgpack::packer<Stream>& o, boost::gregorian::date const& v) const {
+        o.pack(boost::gregorian::to_iso_string(v));
+        return o;
+    }
+};
+
+} // namespace adaptor
+} // MSGPACK_API_VERSION_NAMESPACE(MSGPACK_DEFAULT_API_NS)
+} // namespace msgpack
+#endif // __BOOST_DATE_MSGPACK_SERIALIZER__
+''');
+    }
   }
 
   // end <class PodMsgpack>

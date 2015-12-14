@@ -33,6 +33,10 @@ dev_dependencies:
 
 dependency_overrides:
 # custom <ebisu_msgpack dependency overrides>
+
+#  ebisu_pod:
+#    path: ../ebisu_pod
+    
 # end <ebisu_msgpack dependency overrides>
 
 transformers:
