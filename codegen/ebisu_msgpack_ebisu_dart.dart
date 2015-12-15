@@ -80,3 +80,4 @@ ${indentBlock(brCompact(nonGeneratedFiles))}
 // custom <ebisuMsgpackEbisuDart global>
 String _topDir;
 // end <ebisuMsgpackEbisuDart global>
+
