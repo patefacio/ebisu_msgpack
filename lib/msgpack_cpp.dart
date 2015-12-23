@@ -38,14 +38,15 @@ class PodMsgpack {
 
       cls
         ..getCodeBlock(clsPublic).snippets.add(
-          'MSGPACK_DEFINE(${cls.members.map((m) => m.vname).join(", ")});\n')
+            'MSGPACK_DEFINE(${cls.members.map((m) => m.vname).join(", ")});\n')
         ..addFullMemberCtor()
         ..defaultCtor.usesDefault = true;
     }
 
     final podEnums = podPackage.podEnums;
-    _header.getCodeBlock(fcbPostNamespace).snippets.add(brCompact(podEnums
-            .map((pe) => 'MSGPACK_ADD_ENUM(${namespace.qualify(defaultNamer.nameEnum(pe.id))});')));
+    _header.getCodeBlock(fcbPostNamespace).snippets.add(brCompact(podEnums.map(
+        (pe) =>
+            'MSGPACK_ADD_ENUM(${namespace.qualify(defaultNamer.nameEnum(pe.id))});')));
 
     final hasDate = podPackage.allTypes.any((var t) => t.typeName == 'date');
 
