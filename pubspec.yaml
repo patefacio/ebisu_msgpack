@@ -1,6 +1,5 @@
 name: ebisu_msgpack
 version: 0.0.1
-author: Daniel Davidson <dbdavidson@yahoo.com>
 homepage: https://github.com/patefacio/ebisu_msgpack
 description: >
   Support for generating code providing msgpack data access patterns.
@@ -9,10 +8,10 @@ dependencies:
 
 # custom <ebisu_msgpack dependencies>
 
-  ebisu_pod:
-    git:
-      url: git://github.com/patefacio/ebisu_pod
-      ref: HEAD
+  ebisu_pod: "0.0.5"
+#    git:
+#      url: git://github.com/patefacio/ebisu_pod
+#      ref: HEAD
 
   ebisu_cpp: "any"
       
